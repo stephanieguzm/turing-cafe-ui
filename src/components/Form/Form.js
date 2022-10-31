@@ -7,7 +7,7 @@ class Form extends Component {
       name: '',
       date: '',
       time: '',
-      number: ''
+      number: '',
     }
   }
 
@@ -17,7 +17,11 @@ class Form extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    //App callback function
+    const newReservation = {
+      id: Date.now(),
+      ...this.state
+    }
+    this.props.addReservation(newReservation)
   }
 
   render() {
@@ -52,7 +56,7 @@ class Form extends Component {
             value={this.state.number}
             onChange={(event) => this.handleChange(event)}
           />
-          <button onSubmit={(event) => this.handleSubmit(event)}>Make Reservation</button>
+          <button onClick={(event) => this.handleSubmit(event)}>Make Reservation</button>
         </form>
       </section>
     )
